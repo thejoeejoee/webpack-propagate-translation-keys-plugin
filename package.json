@@ -1,0 +1,27 @@
+{
+  "name": "webpack-propagate-translation-keys-plugin",
+  "version": "1.0.0",
+  "description": "Webpack plugin to propagate translations keys into gettext .po files.",
+  "main": "src/index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thejoeejoee/webpack-propagate-translations-key-plugin.git"
+  },
+  "keywords": [
+    "gettext",
+    "django",
+    "webpack",
+    "i18n"
+  ],
+  "author": "Josef Kolar <thejoeejoee@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thejoeejoee/webpack-propagate-translations-key-plugin/issues"
+  },
+  "homepage": "https://github.com/thejoeejoee/webpack-propagate-translations-key-plugin#readme",
+  "dependencies": {
+    "gettext-parser": "^2.0.0"
+  }
+}
