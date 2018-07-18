@@ -31,7 +31,11 @@ module.exports = class PropagateTranslationKeysPlugin {
         let plugin = this;
         compiler.plugin("emit", (compilation, cb) => {
 
-            let keys = Object.keys(require(input));
+            if (fs.existsSync(input)) {
+                let keys = Object.keys(require(input));
+            } else {
+                let keys = [];
+            }
 
             languages.map(function (language) {
                 const poFilePath = path.join(localeDir, language, 'LC_MESSAGES', domain + '.po');
