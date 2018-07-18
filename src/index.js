@@ -9,7 +9,7 @@ const defaults = {
 };
 
 
-module.exports = class ExpandPoFilesPlugin {
+module.exports = class PropagateTranslationKeysPlugin {
     constructor(options) {
         this.options = Object.assign({}, defaults, options);
     }
@@ -35,27 +35,29 @@ module.exports = class ExpandPoFilesPlugin {
 
             languages.map(function (language) {
                 const poFilePath = path.join(localeDir, language, 'LC_MESSAGES', domain + '.po');
-                let translations = ExpandPoFilesPlugin.createDefaultCatalog();
+                let translations = PropagateTranslationKeysPlugin.createDefaultCatalog();
                 if (fs.existsSync(poFilePath)) {
                     // if already exists
                     let input = fs.readFileSync(poFilePath);
                     translations = gettextParser.po.parse(input);
                 }
 
-                let catalog = translations['translations'][''];
+
+                let catalog = translations['translations'][''] || {};
+
                 keys.map(function (key) {
 
                     if (!(key in catalog))
                         catalog[key] = {
                             msgid: key,
                             comments: {reference: '...'}, // TODO: extract with occurences
-                            msgstr: []
+                            msgstr: ['']
                         };
                 });
                 translations['translations'][''] = catalog;
 
                 let output = gettextParser.po.compile(translations, {foldLength: 82});
-                // fs.writeFileSync(poFilePath, output);
+                fs.writeFileSync(poFilePath, output);
 
                 compilation.assets[poFilePath] = {
                     source: function () {
