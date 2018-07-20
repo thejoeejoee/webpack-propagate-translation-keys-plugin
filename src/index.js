@@ -63,14 +63,15 @@ module.exports = class PropagateTranslationKeysPlugin {
                 let output = gettextParser.po.compile(translations, {foldLength: 82});
                 fs.writeFileSync(poFilePath, output);
 
-                compilation.assets[poFilePath] = {
+                // TODO: with abs path not works on windows
+                /* compilation.assets[poFilePath] = {
                     source: function () {
                         return output;
                     },
                     size: function () {
                         return output.length;
                     }
-                };
+                };*/
             });
 
 
