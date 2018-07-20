@@ -30,11 +30,9 @@ module.exports = class PropagateTranslationKeysPlugin {
         let {input, localeDir, languages, domain} = this.options;
         let plugin = this;
         compiler.plugin("emit", (compilation, cb) => {
-
+            let keys = [];
             if (fs.existsSync(input)) {
-                let keys = Object.keys(require(input));
-            } else {
-                let keys = [];
+                keys = Object.keys(require(input));
             }
 
             languages.map(function (language) {

@@ -1,6 +1,6 @@
 {
   "name": "webpack-propagate-translation-keys-plugin",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Webpack plugin to propagate translations keys into gettext .po files.",
   "main": "src/index.js",
   "scripts": {},
